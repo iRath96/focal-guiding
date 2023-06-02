@@ -211,31 +211,45 @@
         </descr>
     </plugin>
 
-    <plugin type="integrator" name="recursive_path" readableName="Recursive Path Tracer"
-        show="true" className="RecursivePathTracer" extends="MonteCarloIntegrator">
+    <plugin type="integrator" name="focal_path" readableName="Focal Guiding Path Tracer"
+        show="true" className="FocalPathTracer" extends="MonteCarloIntegrator">
         <descr>
-            This integrator implements a basic recursive path tracer with advanced Russian Roulette and Splitting strategies.
+            This integrator implements "Focal Path Guiding for Light Transport Simulation" [Rath et al. 2023]
+            ontop of a basic recursive path tracer.
             Only equal-time renders are supported for now.
+            Russian roulette is not supported, as specialized algorithms are required to work nicely with guiding [Vorba et al. 2016], [Rath et al. 2022].
         </descr>
-        <param name="budget" readableName="Rendering Budget" type="float" default="30" importance="1">
+        <param name="budget" readableName="Rendering Budget" type="float" default="120">
             The time (in seconds) allocated for rendering.
         </param>
-        <param name="rrsStrategy" readableName="RRS strategy" type="string" default="noRR" importance="1">
-            What type of Russian Roulette and Splitting to perform.
-            Examples include:
-            <ul>
-                <li><tt>classicRRA</tt> for classic (throughput based) Russian Roulette.</li>
-                <li><tt>ADRR</tt> for Adjoint-Driven Russian Roulette.</tt>
-                <li><tt>ADRRS</tt> for Adjoint-Driven Russian Roulette and Splitting.</li>
-                <li><tt>EAR</tt> for Efficieny-Aware Russian Roulette.</tt>
-                <li><tt>EARS</tt> for Efficieny-Aware Russian Roulette and Splitting.</li>
-            </ul>
+        <param name="iterationCount" readableName="Iteration Count" type="integer" default="15">
+            The number of training iterations to be performed.
         </param>
-        <param name="splittingMin" readableName="Min. Splitting" type="float" default="0.05" importance="1">
-            The minimum value the splitting factor will be clamped to (limits RR).
+        <param name="iterationBudget" readableName="Iteration Budget" type="float" default="6">
+            The time (in seconds) that each training iteration takes.
+            A good initial guess is to dedicate half of the time to training and the other half to rendering [Müller et al. 2017].
+            To this end, make sure that iterationCount times iterationBudget equals half of the budget.
         </param>
-        <param name="splittingMax" readableName="Max. Splitting" type="float" default="20" importance="1">
-            The maximum value the splitting factor will be clamped to (limits splitting).
+        <param name="dumpScene" readableName="Dump Scene" type="boolean" default="false" importance="1">
+            Dumps the geometry of the scene as single PLY mesh file, used by our visualizer.
+        </param>
+        <param name="orth.threshold" readableName="Octree Threshold" type="float" default="1e-3">
+            Controls the resolution of the guiding octrees. Smaller values will yield finer resolution,
+            at the expense of higher computational cost per sample.
+            If many focal points are present, consider lowering this value.
+            Please consult our paper for a study on this parameter.
+        </param>
+        <param name="orth.minDepth" readableName="Octree Minimum Depth" type="integer" default="0" importance="1">
+            Minimum depth for the octree.
+            Do not change this unless you know what you are doing.
+        </param>
+        <param name="orth.maxDepth" readableName="Octree Maximum Depth" type="integer" default="14" importance="1">
+            Maximum depth for the octree.
+            Do not change this unless you know what you are doing.
+        </param>
+        <param name="orth.decay" readableName="Octree Learning Decay" type="float" default="0.5" importance="1">
+            The guiding densities from all iterations are combined by an exponential moving average controlled by this parameter.
+            Do not change this unless you know what you are doing.
         </param>
     </plugin>
 

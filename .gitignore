@@ -46,7 +46,9 @@
 *.log
 *.mip
 
-/visualizer/build
+/visualizer/build*
 
 *.vcxproj.user
 /.vscode
+
+.DS_Store
