@@ -128,7 +128,7 @@ struct ReiboldGuiding : public SamplingDensity {
 
     static float pathDistance(const Reibold::Path &a, const Reibold::Path &b) {
         //return std::abs(b.x0 - a.x0) + std::abs(b.x1 - a.x1); // L1 test
-        return std::powf(b.x0 - a.x0, 2.f) + std::powf(b.x1 - a.x1, 2.f);
+        return std::pow(b.x0 - a.x0, 2.f) + std::pow(b.x1 - a.x1, 2.f);
     }
 
     struct KnnFinder {

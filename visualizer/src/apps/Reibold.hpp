@@ -71,7 +71,7 @@ struct Gaussian {
     Gaussian(float mu, float s) : mu(mu), s(s) {}
 
     float pdf(float x) const {
-        return std::expf(-std::powf(x - mu, 2) / (2 * s)) / std::sqrtf(float(2 * M_PI) * s);
+        return std::exp(-std::pow(x - mu, 2) / (2 * s)) / std::sqrt(float(2 * M_PI) * s);
     }
 
     float sample(PRNG &prng) const {
