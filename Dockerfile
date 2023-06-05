@@ -4,7 +4,7 @@
 #
 
 # builder
-FROM ubuntu:20.04 AS builder
+FROM ubuntu:22.04 AS builder
 LABEL authors="Alexander Rath <alexander.rath@dfki.de>"
 
 ENV TZ=Europe
@@ -14,7 +14,6 @@ RUN apt-get update && \
     apt-get install -y \
         build-essential \
         scons \
-        python2 \
         libgl1-mesa-dev \
         libglu1-mesa-dev \
         libxxf86vm-dev \
@@ -36,11 +35,10 @@ RUN apt-get update && \
 WORKDIR /mitsuba
 COPY mitsuba .
 
-RUN cp build/config-linux-gcc.py config.py && \
-    /usr/bin/env python2 $(which scons) -j $(nproc)
+RUN cp build/config-linux-gcc.py config.py && scons -j $(nproc)
 
 # mitsuba
-FROM ubuntu:20.04 AS mitsuba
+FROM ubuntu:22.04 AS mitsuba
 LABEL authors="Alexander Rath <alexander.rath@dfki.de>"
 
 ENV TZ=Europe
