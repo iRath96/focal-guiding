@@ -7,6 +7,14 @@ This repository contains the authors' Mitsuba implementation of the
 We have implemented our algorithm in a recursive path tracer, which can be found under [`mitsuba/src/integrators/path/focal_path.cpp`](mitsuba/src/integrators/path/focal_path.cpp).
 The underlying data structure, as described in our paper, can be found under [`mitsuba/src/integrators/path/focal_guiding.h`](mitsuba/src/integrators/path/focal_guiding.h).
 
+## Scenes
+You can download all scenes tested in our paper [from this link](https://oc.cs.uni-saarland.de/owncloud/index.php/s/DQmRgNBQooPaE8A).
+By default (e.g., by running `mitsuba camera-obscura.xml` without further arguments), the scenes will render using focal path guiding with identical settings to our paper.
+You can switch between integrators using the `$integrator` variable (e.g., by passing `-Dintegrator=bdpt` for bi-directional path tracing).
+Note that you will need to tune the number of samples by hand for those integrators that do not support equal time rendering.
+Also be aware that equal-time results may look different on your hardware if it happens to be less or more powerful than our testing hardware.
+The shared link also contains references, albeit with some residual outliers due to the enormous complexity of the light transport featured in the scenes.
+
 ## Parameters
 
 ⚠️ Please note that this implementation does not support Russian roulette. Common variants of Russian roulette are prone to undoing the benefits of guiding. Given its orthogonality, we leave implementing sophisticated variants as future work.
