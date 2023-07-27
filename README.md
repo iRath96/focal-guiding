@@ -1,5 +1,7 @@
 # Focal Path Guiding for Light Transport Simulation
 
+🔥 Try our [interactive guiding demo](https://graphics.cg.uni-saarland.de/papers/focal-guiding/simulator.html) or our [interactive visualizer](https://graphics.cg.uni-saarland.de/papers/focal-guiding/visualizer.html)!
+
 ![Teaser](/assets/teaser.jpg)
 
 This repository contains the authors' Mitsuba implementation of the 
@@ -9,6 +11,7 @@ The underlying data structure, as described in our paper, can be found under [`m
 
 ## Scenes
 You can download all scenes tested in our paper [from this link](https://oc.cs.uni-saarland.de/owncloud/index.php/s/DQmRgNBQooPaE8A).
+The renders from our paper can be viewed with our [interactive online viewer](https://graphics.cg.uni-saarland.de/papers/focal-guiding/).
 By default (e.g., by running `mitsuba camera-obscura.xml` without further arguments), the scenes will render using focal path guiding with identical settings to our paper.
 You can switch between integrators using the `$integrator` variable (e.g., by passing `-Dintegrator=bdpt` for bi-directional path tracing).
 Note that you will need to tune the number of samples by hand for those integrators that do not support equal time rendering.
