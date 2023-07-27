@@ -5,7 +5,7 @@
 ![Teaser](/assets/teaser.jpg)
 
 This repository contains the authors' Mitsuba implementation of the 
-[Focal Path Guiding algorithm](https://graphics.cg.uni-saarland.de/publications/rath-sig2023.html).
+[Focal Path Guiding algorithm](https://graphics.cg.uni-saarland.de/publications/rath-2023-focal-guiding.html).
 We have implemented our algorithm in a recursive path tracer, which can be found under [`mitsuba/src/integrators/path/focal_path.cpp`](mitsuba/src/integrators/path/focal_path.cpp).
 The underlying data structure, as described in our paper, can be found under [`mitsuba/src/integrators/path/focal_guiding.h`](mitsuba/src/integrators/path/focal_guiding.h).
 
