@@ -1,5 +1,6 @@
 # Focal Path Guiding for Light Transport Simulation
 
+🍿 Check out our SIGGRAPH 2023 presentation [on YouTube](https://youtu.be/2gMt0WzSVpM)!  
 🔥 Try our [interactive guiding demo](https://graphics.cg.uni-saarland.de/papers/focal-guiding/simulator.html) or our [interactive visualizer](https://graphics.cg.uni-saarland.de/papers/focal-guiding/visualizer.html)!
 
 ![Teaser](/assets/teaser.jpg)
